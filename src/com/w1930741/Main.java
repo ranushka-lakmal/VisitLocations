@@ -11,6 +11,7 @@ public class Main {
 
         int select;
         Scanner sc = new Scanner(System.in);
+        do {
         System.out.println("Please Select Below Options : ");
         System.out.println("1 : ADMIN ");
         System.out.println("2 : VISITOR ");
@@ -19,13 +20,18 @@ public class Main {
         Logins l = new Logins();
         Places p = new Places();
 
-        do {
+
             switch (select) {
                 case 1:
                     l.admin();
                     break;
                 case 2:
-                    p.print();
+                    //need to crete visitor login
+                    l.visitor();
+                   /* p.print();*/
+                    break;
+                case 4:
+                    System.out.println("Good Bye");
                     break;
                 default:
                     System.out.println("invalid input");

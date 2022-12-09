@@ -1,11 +1,19 @@
 package com.w1930741;
 
+import java.awt.*;
+import java.io.*;
 import java.util.Scanner;
 
 public class Logins {
 
+	String username = "";
+	String password = "";
+
+	String filePath = "C:\\Users\\ranus\\Desktop\\myProject\\visitor.txt";
+	private static Scanner x;
 
 	public void admin(){
+
 
 		String userName = "";
 		String passWord = "";
@@ -57,8 +65,46 @@ public class Logins {
 	}
 
 	public void visitor(){
-		
 
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter visitor username : ");
+		username = sc.nextLine();
+		System.out.println("Please enter visitor password : ");
+		password = sc.nextLine();
+
+		verfyLogin(username, password, filePath);
+
+	}
+
+
+	public void verfyLogin(String username, String password, String filePath){
+
+		boolean found = false;
+		String tempUsername = "";
+		String tempPassword = "";
+
+		Places p = new Places();
+
+		try{
+			x = new Scanner(new File(filePath));
+			x.useDelimiter("[,\n]");
+
+			while (x.hasNext() && !found){
+				tempUsername = x.next();
+				tempPassword = x.next();
+
+				if(tempUsername.trim().equals(username) && tempPassword.trim().equals(password)){
+					found = true;
+					System.out.println("Successful login");
+					p.print();
+				}
+			}
+			x.close();
+
+		}catch (Exception e){
+
+			System.out.println("Error \n"+ e);
+		}
 	}
 
 
